@@ -1,6 +1,7 @@
 import React from 'react';
 import Gift from "../entities/Gift";
-import {Box, CircularProgress, ImageList, ImageListItem, Typography} from "@mui/material";
+import {Box, CircularProgress, ImageList, Typography} from "@mui/material";
+import GiftImage from "./GiftImage";
 
 type Props = {
     gifts: Gift[]
@@ -22,14 +23,7 @@ const GiftList: React.FC<Props> = ({gifts, searchTerm, isLoading}) => {
             }
             {searchTerm && gifts.length > 0 && !isLoading
                     ?   <ImageList>
-                            {gifts.map(gift =>
-                                <ImageListItem key={gift.id}>
-                                    <img
-                                        src={gift.url}
-                                        alt={gift.title}
-                                    />
-                                </ImageListItem>
-                            )}
+                            {gifts.map(gift => <GiftImage key={gift.id} gift={gift}/>)}
                         </ImageList>
                     :   null
             }
